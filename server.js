@@ -20,7 +20,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:3000",
-      "https://pinvent-app-frontend.onrender.com",
+      "https://mid-invent-app.onrender.com",
     ],
     //Enable sending credentials (back => front)
     credentials: true,
