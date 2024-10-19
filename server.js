@@ -12,39 +12,43 @@ const path = require("path");
 
 const app = express();
 
-// Middlewares
+//Middlewares
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
-app.use(bodyParser.json());
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://mid-invent-app.onrender.com"],
+    origin: [
+      "http://localhost:3000",
+      "https://pinvent-app-frontend.onrender.com",
+    ],
+    //Enable sending credentials (back => front)
     credentials: true,
   })
 );
-
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+// app.use(bodyParser.json())
 
-// Routes Middleware
+//Routes Middleware
 app.use("/api/users", userRoute);
 app.use("/api/products", productRoute);
 app.use("/api/contactus", contactRoute);
 
-// Routes
+//Routes
 app.get("/", (req, res) => {
   res.send("Home Page");
 });
 
-// Error Middleware
+//Error Middleware
 app.use(errorHandler);
-// Connect to DB and start server
+
 const PORT = process.env.PORT || 5000;
+
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
     app.listen(PORT, () => {
-      console.log(`Server Running on port ${PORT}`);
+      console.log(`Server running on port ${PORT}`);
     });
   })
   .catch((err) => console.log(err));
