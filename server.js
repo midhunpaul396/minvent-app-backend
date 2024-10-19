@@ -19,7 +19,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://mid-invent-app.vercel.app"],
+    origin: ["http://localhost:3000", "https://mid-invent-app.onrender.com"],
     credentials: true,
   })
 );
